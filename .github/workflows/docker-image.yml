@@ -17,7 +17,10 @@ jobs:
           username: ${{ vars.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+          
+
   build:
+    needs: login
     runs-on: ubuntu-latest
     steps:
     
@@ -29,6 +32,17 @@ jobs:
     - name: Build docker image
       run: |
         docker build -t jahyr/docker-graphql:0.0.1 .
+
+        
+
+  push:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Push Docker Image
+        run: |
+          docker push jahyr/docker-graphql:0.0.1 .
     
     
     # - name: Build the Docker image
