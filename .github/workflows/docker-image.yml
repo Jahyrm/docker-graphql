@@ -22,8 +22,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t jahyr/docker-graphql:0.0.1 .
+          docker build -t jahyr/docker-graphql:0.0.2 .
+          docker build -t jahyr/docker-graphql:latest .
 
       - name: Push Docker image
         run: |
-          docker push jahyr/docker-graphql:0.0.1
+          docker push jahyr/docker-graphql:0.0.2
+          docker push jahyr/docker-graphql:latest
